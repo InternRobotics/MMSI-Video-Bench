@@ -1,0 +1,4 @@
+numpy
+openai
+torch
+transformers
