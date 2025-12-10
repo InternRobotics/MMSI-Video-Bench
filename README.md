@@ -27,18 +27,17 @@ We introduce **MMSI-Video-Bench**, a fully human-annotated benchmark for video-b
 
 - **High quality.** All data are manually annotated by 11 domain experts in 3D vision, following a rigorous review and acceptance process to ensure annotation accuracy and reliability.
 
-- **Challenging.** The benchmark targets inherently difficult problems in video-based spatial intelligence. We evaluate 25 strong open-source and proprietary MLLMs, revealing a striking human–AI gap: many models perform near chance, and even the best reasoning model trails human performance by nearly 60%.
+- **Challenging.** We evaluate 25 strong open-source and proprietary MLLMs, revealing a striking human–AI gap, even the best reasoning model trails human performance by nearly 60%.
 
-- **Diverse Video Sources.** We curated videos spanning a broad spectrum of real-world scenarios. In terms of capture types, the collection includes tabletop recordings, single-room indoor scenes, multi-room and multi-floor indoor environments, outdoor building and street views, natural outdoor settings, sports activities, and movie footage. (25 public + 1 in-house)
+- **Diverse Video Sources.** MMSI-Video-Bench includes videos from 25 public datasets and 1 in-house collection, spanning tabletop recordings, indoor and multi-floor environments, outdoor scenes, sports, and movie footage.
 
-- **Comprehensive and Hostile Task Coverage.** Different from previous benchmarks,MMSI-Video-Bench serves as a more holistic benchmark for video spatial intelligence, covering complex reasoning about spatial layouts, motion understanding, and decision-making, as well as reasoning across multiple videos
-.
+- **Comprehensive and Hostile Task Coverage.** The benchmark covers spatial layout reasoning, motion understanding, decision-making, and cross-video reasoning, providing a more holistic evaluation of video-based spatial intelligence.
 
 
 
 ## Example
 
-As a video-based spatial intelligence benchmark, MMSI-Video-Bench primarily evaluates a model’s ability to perceive, understand, and reason over video information. The questions span 5 major categories: **(1).Spatial Construction**：This category focuses on spatial attributes of instances and scenes, as well as spatial relationships among instances, scenes, and cameras (six subtypes in total); **(2).Motion Understanding**:
+The questions in MMSI-VIdeo-Bench span 5 major categories: **(1).Spatial Construction**：This category focuses on spatial attributes of instances and scenes, as well as spatial relationships among instances, scenes, and cameras (six subtypes in total); **(2).Motion Understanding**:
 This includes understanding camera motion, instance motion, and interactive motion between instances; **(3).Planning** based on spatiotemporal video information;  **(4).Prediction**: Assessing a model’s ability to predict, anticipate, or imagine future states based on the observed video; **(5).Cross-Video Reasoning**: This involves memory update across temporally separated video segments and multi-view integration across videos captured from different viewpoints.
 
 
