@@ -1,7 +1,7 @@
 <div align="center">
 
 # MMSI-Video-Bench: A Holistic Benchmark for Video-Based Spatial Intelligence
-[**🌐 Homepage**]()  | [**📑 Paper**]() | [**🤗 dataset**](https://huggingface.co/datasets/rbler/MMSI-Video-Bench) | [**📖 arXiv**]()
+[**🌐 Homepage**](https://rbler1234.github.io/MMSI-VIdeo-Bench.github.io/)  | [**📑 Paper**]() | [**🤗 dataset**](https://huggingface.co/datasets/rbler/MMSI-Video-Bench) | [**📖 arXiv**]()
 </div>
 
 
@@ -86,6 +86,9 @@ After downloading, unzip the files and organize them as follows:
 
 ## 👓 Evaluation
 
+Please note that while **Sufficient Coverage** ensures that all video information is fully preserved, we **Recommend** using this setting for evaluation.
+Evaluation under the **Uniform** setting may lead to missing critical information. The Uniform-50 setting is only provided due to current input-length limitations in some models.
+
 1. Run infernece
 
     For open-source models, change the openai `base_url` and `api_key` to your own in `utils/openai_api.py`. For proprietary models, modify the `load_model` function in `inference.py` to use the corresponding model path. Run the following command to perform inference for a specific model under a particular setting:
@@ -107,22 +110,22 @@ After downloading, unzip the files and organize them as follows:
 
 | Model                      | Avg.(%) | Type        |
 |----------------------------|---------|-------------|
-| human                   | 96.40   | Baseline    |
-|🥇gemini-3-pro            | 37.97   | Proprietary |
-|🥈 o3                      | 36.98   | Proprietary |
-|🥉gpt-5                      | 36.80   | Proprietary |
-| gemini-2.5-flash           | 35.44   | Proprietary |
-| gemini-2.5-flash(thinking) | 35.17   | Proprietary |
-| seed-1-6-vision            | 34.87   | Proprietary |
-| claude-haiku-4-5           | 34.27   | Proprietary |
-| o4-mini                    | 34.18   | Proprietary |
+| Human                   | 96.40   | Baseline    |
+|🥇Gemini 3 pro            | 37.97   | Proprietary |
+|🥈 O3                      | 36.98   | Proprietary |
+|🥉GPT-5                      | 36.80   | Proprietary |
+| Gemini 2.5 Flash           | 35.44   | Proprietary |
+| Gemini 2.5 Flash (Thinking) | 35.17   | Proprietary |
+| Seed-1.6-vision            | 34.87   | Proprietary |
+| Claude-haiku-4.5           | 34.27   | Proprietary |
+| O4-mini                    | 34.18   | Proprietary |
 | QwenVL2.5-72B              | 32.73   | Open-Source |
 | InternVL3-78B              | 32.55   | Open-Source |
-| doubao-1-5-thinking        | 31.65   | Proprietary |
-| gpt-4o                     | 31.56   | Proprietary |
+| Doubao-1.5-thinking        | 31.65   | Proprietary |
+| GPT-4o                     | 31.56   | Proprietary |
 | InternVL2.5-78B            | 31.37   | Open-Source |
 | InternVL2.5-38B            | 31.01   | Open-Source |
-| QwenVL3-30B(Thinking)      | 30.83   | Open-Source |
+| QwenVL3-30B (Thinking)      | 30.83   | Open-Source |
 | LLaVA-Video-72B            | 30.38   | Open-Source |
 | InternVL3-8B               | 30.38   | Open-Source |
 | QwenVL2.5-VL-7B-Instruct   | 29.66   | Open-Source |
@@ -141,11 +144,11 @@ After downloading, unzip the files and organize them as follows:
 
 | Model                      | Avg.(%) | Type        |
 |----------------------------|---------|-------------|
-| human                      | 96.4    | Baseline    |
-| 🥇o3                         | 37.34   | Proprietary |
-| 🥈gemini-2.5-flash(thinking) | 36.71   | Proprietary |
-| 🥉gemini-2.5-flash           | 36.62   | Proprietary |
-| o4-mini                    | 35.08   | Proprietary |
+| Human                      | 96.4    | Baseline    |
+| 🥇O3                         | 37.34   | Proprietary |
+| 🥈Gemini 2.5 Flash (Thinking) | 36.71   | Proprietary |
+| 🥉Gemini 2.5 Flash           | 36.62   | Proprietary |
+| O4-mini                    | 35.08   | Proprietary |
 | QwenVL2.5-32B              | 32.37   | Open-Source |
 | QwenVL2.5-72B              | 31.83   | Open-Source |
 | InternVL3-8B               | 29.57   | Open-Source |
@@ -153,8 +156,8 @@ After downloading, unzip the files and organize them as follows:
 | QwenVL3-8B                 | 29.09   | Open-Source |
 | QwenVL2.5-7B               | 28.84   | Open-Source |
 | InternVL2.5-8B             | 28.66   | Open-Source |
-| gpt-4o                     | 28.12   | Proprietary |
-| QwenVL3-30B(thinking)      | 28.03   | Open-Source |
+| GPT-4o                     | 28.12   | Proprietary |
+| QwenVL3-30B (Thinking)      | 28.03   | Open-Source |
 | InternVideo2.5-8B          | 26.85   | Open-Source |
 | Random Guessing            | 24.10   | Baseline    |
 
@@ -164,30 +167,30 @@ After downloading, unzip the files and organize them as follows:
 
 | Model                      | Avg.(%) | Type        |
 |----------------------------|---------|-------------|
-| 🥇gemini-3-pro               | 40.20   | Proprietary |
-| 🥈gemini-2.5-flash(thinking) | 39.71   | Proprietary |
-| 🥉seed-1-6-vision            | 39.34   | Proprietary |
-| o3                         | 39.22   | Proprietary |
+| 🥇Gemini 3 Pro               | 40.20   | Proprietary |
+| 🥈Gemini 2.5 Flash (Thinking) | 39.71   | Proprietary |
+| 🥉Seed-1.6-vision            | 39.34   | Proprietary |
+| O3                         | 39.22   | Proprietary |
 | QwenVL2.5-72B              | 37.75   | Open-Source |
 | InternVL3-8B               | 37.75   | Open-Source |
-| gpt-5                      | 37.75   | Proprietary |
+| GPT-5                      | 37.75   | Proprietary |
 | InternVL2.5-38B            | 36.27   | Open-Source |
-| doubao-1-5-thinking        | 36.07   | Proprietary |
-| gemini-2.5-flash           | 35.78   | Proprietary |
-| o4-mini                    | 35.29   | Proprietary |
+| Doubao-1.5-thinking        | 36.07   | Proprietary |
+| Gemini 2.5 Flash           | 35.78   | Proprietary |
+| O4-mini                    | 35.29   | Proprietary |
 | QwenVL2.5-7B               | 34.8    | Open-Source |
 | InternVL2.5-78B            | 34.8    | Open-Source |
-| claude-haiku-4-5           | 34.8    | Proprietary |
+| Claude-haiku-4.5           | 34.8    | Proprietary |
 | InternVL3-78B              | 34.31   | Open-Source |
 | LLaVA-Video-72B            | 34.31   | Open-Source |
 | QwenVL3-30B                | 32.84   | Open-Source |
 | QwenVL2.5-32B              | 32.84   | Open-Source |
 | QwenVL3-8B                 | 32.12   | Open-Source |
 | InternVideo2.5-8B          | 29.90   | Open-Source |
-| gpt-4o                     | 29.90   | Proprietary |
+| GPT-4o                     | 29.90   | Proprietary |
 | InternVL2.5-8B             | 28.43   | Open-Source |
 | InternVL3-38B              | 27.94   | Open-Source |
-| QwenVL3-30B(Thinking)      | 27.94   | Open-Source |
+| QwenVL3-30B (Thinking)      | 27.94   | Open-Source |
 | LLaVA-Video-7B             | 24.51   | Open-Source |
 
 
@@ -197,18 +200,18 @@ After downloading, unzip the files and organize them as follows:
 
 | Model                      | Avg.(%) | Type        |
 |----------------------------|---------|-------------|
-| 🥇gpt-5                      | 41.68   | Proprietary |
-| 🥈o3                         | 40.73   | Proprietary |
-| 🥉gemini-2.5-flash           | 39.39   | Proprietary |
-| gemini-3-pro               | 39.39   | Proprietary |
-| gemini-2.5-flash(thinking) | 37.86   | Proprietary |
-| o4-mini                    | 37.48   | Proprietary |
-| seed-1-6-vision            | 34.2    | Proprietary |
-| claude-haiku-4-5           | 33.46   | Proprietary |
-| doubao-1-5-thinking        | 33.04   | Proprietary |
+| 🥇GPT-5                      | 41.68   | Proprietary |
+| 🥈O3                         | 40.73   | Proprietary |
+| 🥉Gemini 2.5 Flash           | 39.39   | Proprietary |
+| Gemini 3 Pro               | 39.39   | Proprietary |
+| Gemini 2.5 Flash (Thinking) | 37.86   | Proprietary |
+| O4-mini                    | 37.48   | Proprietary |
+| Seed-1.6-vision            | 34.2    | Proprietary |
+| Claude-haiku-4.5           | 33.46   | Proprietary |
+| Doubao-1.5-thinking        | 33.04   | Proprietary |
 | InternVL3-78B              | 32.5    | Open-Source |
-| QwenVL3-30B(Thinking)      | 32.31   | Open-Source |
-| gpt-4o                     | 31.74   | Proprietary |
+| QwenVL3-30B (Thinking)      | 32.31   | Open-Source |
+| GPT-4o                     | 31.74   | Proprietary |
 | QwenVL2.5-72B              | 30.78   | Open-Source |
 | InternVL2.5-78B            | 30.4    | Open-Source |
 | QwenVL3-30B                | 30.02   | Open-Source |
