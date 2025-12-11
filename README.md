@@ -233,21 +233,21 @@ Evaluation under the **Uniform** setting may lead to missing critical informatio
 
 | Model                      | Avg.(%) | Type        |
 |----------------------------|---------|-------------|
-| 🥇gemini-2.5-flash           | 38.81   | Proprietary |
-| 🥈gemini-2.5-flash(thinking) | 38.21   | Proprietary |
-| 🥉o3                         | 37.61   | Proprietary |
-| doubao-1-5-thinking        | 37.05   | Proprietary |
+| 🥇Gemini 2.5 Flash           | 38.81   | Proprietary |
+| 🥈Gemini 2.5 Flash (Thinking) | 38.21   | Proprietary |
+| 🥉O3                         | 37.61   | Proprietary |
+| Doubao-1.5-thinking        | 37.05   | Proprietary |
 | InternVL3-78B              | 35.52   | Open-Source |
-| gpt-5                      | 35.22   | Proprietary |
-| gemini-3-pro               | 35.22   | Proprietary |
-| o4-mini                    | 34.33   | Proprietary |
+| GPT-5                      | 35.22   | Proprietary |
+| Gemini 3 Pro               | 35.22   | Proprietary |
+| O4-mini                    | 34.33   | Proprietary |
 | QwenVL2.5-72B              | 34.33   | Open-Source |
-| seed-1-6-vision            | 33.04   | Proprietary |
-| claude-haiku-4-5           | 32.84   | Proprietary |
+| Seed-1.6-vision            | 33.04   | Proprietary |
+| Claude-haiku-4.5           | 32.84   | Proprietary |
 | InternVL2.5-38B            | 31.94   | Open-Source |
 | InternVL3-8B               | 31.94   | Open-Source |
-| gpt-4o                     | 31.94   | Proprietary |
-| QwenVL3-30B(Thinking)      | 31.64   | Open-Source |
+| GPT-4o                     | 31.94   | Proprietary |
+| QwenVL3-30B (Thinking)      | 31.64   | Open-Source |
 | QwenVL2.5-32B              | 31.04   | Open-Source |
 | LLaVA-Video-72B            | 31.04   | Open-Source |
 | InternVL3-38B              | 30.45   | Open-Source |
