@@ -41,27 +41,6 @@ def extract_answer(response):
     else:
         return 'O'
 
-
-
-type_map_dict = {
-    "CU-跨时间":"(Cross-Video) Memoery Update",
-    "CU-跨视角":"(Cross-Video) Multi-View Integration",
-    "HU-规划":"Planning",
-    "HU-预测模拟": "Prediction",
-    "MU-相机运动":"(Motion Understanding) Camera Motion",
-    "MU-物体运动":"(Motion Understanding) Instance Motion",
-    "MU-交互":"(Motion Understanding) Interactive Motion",
-    "SC-物体物体空间关系":"(Spatial Construction) Instance-Instance Spatial Relationship",
-    "SC-物体场景空间关系":"(Spatial Construction) Instance-Scene Spatial Relationship",
-    "SC-场景场景空间关系":"(Spatial Construction) Scene-Scene Spatial Relationship",
-    "SC-物体场景属性":"(Spatial Construction) Instance/Scene Attribute",
-    "SC-物体相机空间关系":"(Spatial Construction) Camera-Instance Spatial Relationship",
-    "SC-场景相机空间关系":"(Spatial Construction) Camera-Scene Spatial Relationship",
-}
-
-
-id_mapping_dict = json.load(open('/mnt/petrelfs/linjingli/MMSI-video/new_path/MMSI_video_meta/id_mapping.json'))
-
 if __name__=='__main__':
     parser = argparse.ArgumentParser(
         description='MMSI-Video-Bench Evaluation')
@@ -93,14 +72,12 @@ if __name__=='__main__':
     for json_file in os.listdir(result_dir):
         json_data = json.load(open(os.path.join(result_dir,json_file)))
         
-        q_id = id_mapping_dict[json_data['id']] if 'user' in json_data['id'] else json_data['id']
+        q_id = json_data['id']
         response = json_data['response']  
-        gt = json_data['gt'] if 'gt' in json_data else json_data["ground_truth"]
+        gt =  json_data["ground_truth"]
         
-        if args.bench == 'origin':
-            question_type = json_data["question_type"] if 'question_type' in json_data else json_data["type"]
-            if question_type in type_map_dict:
-                question_type = type_map_dict[question_type]
+        if args.bench == 'main':
+            question_type =  json_data["type"]
         else:
             if q_id not in bench_id_type:
                 continue
