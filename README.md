@@ -5,12 +5,14 @@
 </div>
 
 
-<!-- contents with emoji -->
+## 🎥 Demo
+[![demo](assets/first_frame.png "demo")](https://youtu.be/HTp_k_qq_Wc)
 
 ## 🔔 News
 
 
 🔥[2025-12]: We released our paper, benchmark, and evaluation codes.
+
 
 ## Features of MMSI-Video-Bench
 
