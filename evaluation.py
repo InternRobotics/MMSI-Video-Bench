@@ -16,27 +16,21 @@ def extract_answer(response):
     response = response.replace('<answer>','').replace('</answer>','')
     if response is None or 'no answer' in response:
         return 'O'
+    
     if 'boxed{' in response:
         split_text = response.split('boxed{')[1].split('}')[0]
         split_text = clear_words(split_text)
         return split_text
-        
-    if '\"answer\":' in response:
-        split_text = response.split('\"answer\":')[-1]
-        split_text = split_text.split(',')[0].split('.')[0]
-        split_text = clear_words(split_text)
-        return split_text
-    elif 'answer is' in response:
-        split_text = response.split('answer is')[-1]
-        split_text = split_text.split(',')[0].split('.')[0]
-        split_text = clear_words(split_text)
-        return split_text
-    elif 'Answer: ' in response:
-        split_text = response.split('Answer: ')[-1]
-        split_text = split_text.split(',')[0].split('.')[0]
-        split_text = clear_words(split_text)
-        return split_text
-    elif clear_words(response.split('.')[0]) in ['A','B','C','D','E','F']:
+    
+    words  = ['\"answer\":','answer is','answer:','\"Answer\":','Answer is','Answer:']
+    for word in words:
+        if word in response:
+            split_text = response.split(word)[-1]
+            split_text = split_text.split(',')[0].split('.')[0]
+            split_text = clear_words(split_text)
+            return split_text
+    
+    if clear_words(response.split('.')[0]) in ['A','B','C','D','E','F']:
         return clear_words(response.split('.')[0])
     else:
         return 'O'

@@ -1,7 +1,49 @@
 <div align="center">
 
 # MMSI-Video-Bench: A Holistic Benchmark for Video-Based Spatial Intelligence
-[**🌐 Homepage**](https://rbler1234.github.io/MMSI-VIdeo-Bench.github.io/)  | [**📑 Paper**](https://arxiv.org/pdf/2512.10863) | [**🤗 dataset**](https://huggingface.co/datasets/rbler/MMSI-Video-Bench) | [**📖 arXiv**](https://arxiv.org/abs/2512.10863)
+
+</div>
+
+<p align="center">
+  <!-- <b>Authors</b><br> -->
+  <a href="https://github.com/rbler1234" target="_blank">Jingli Lin<sup>1,2*</sup></a>, </span>
+  <a href="https://runsenxu.com/" target="_blank">Runsen Xu<sup>1,3*</sup><sup>†</sup></a>, </span>
+  <a href="https://openreview.net/profile?id=%7EShaohao_Zhu2" target="_blank">Shaohao Zhu<sup>1,4</sup></a>, 
+  <a href="https://sihany077.github.io/" target="_blank">Sihan Yang<sup>1</sup></a>, 
+  <a href="https://openreview.net/profile?id=~Peizhou_Cao1" target="_blank">Peizhou Cao<sup>1,5</sup></a>, 
+  <a href="https://kingteeloki-ran.github.io/" target="_blank">Yunlong Ran<sup>1,4</sup></a>,
+  <a href="https://openreview.net/profile?id=~Miao_Hu4" target="_blank">Miao Hu<sup>6</sup></a>,
+  <a href="https://github.com/ZCMax" target="_blank">Chenming Zhu<sup>1,7</sup></a>,
+    <a href="https://kuaikuaixym.github.io/" target="_blank">Yiman Xie<sup>1,4</sup></a>,
+    <a href="https://openreview.net/profile?id=%7EYilin_Long2" target="_blank">Yilin Long<sup>1,8</sup></a>,
+    <a href="https://gordonhu608.github.io/" target="_blank">Wenbo Hu<sup>1,9</sup></a>,
+    <br>
+    <a href="http://dahua.site/" target="_blank">Dahua Lin<sup>1,3</sup></a>,
+    <a href="https://tai-wang.github.io/" target="_blank">Tai Wang<sup>1✉</sup></a>,
+    <a href="https://oceanpang.github.io/" target="_blank">Jiangmiao Pang<sup>1✉</sup></a>
+</p>
+
+<p align="center">
+ <span>1. Shanghai AI Laboratory &nbsp;&nbsp; 2. Shanghai Jiaotong University &nbsp;&nbsp; 3. The Chinese University of Hong Kong &nbsp;&nbsp; 4. Zhejiang University &nbsp;&nbsp; 5. Beihang University</span>
+        <br>
+        <span>6. Xi'an Jiaotong University &nbsp;&nbsp; 7. University of Hong Kong &nbsp;&nbsp; 8. Fudan University &nbsp;&nbsp; 9. University of California, Los Angeles</span>
+  
+</p>
+
+<p align="center">
+  <sup>*</sup>Equal Contribution &nbsp;&nbsp;
+  <sup>†</sup>Project Lead &nbsp;&nbsp;
+</p>
+
+<div align="center">
+
+[![Homepage](https://img.shields.io/badge/Project_Page-4285F4?logo=googlechrome&logoColor=white)](https://rbler1234.github.io/MMSI-VIdeo-Bench.github.io/)
+[![Huggingface](https://img.shields.io/badge/HuggingFace-FFD21E?logo=huggingface&logoColor=black)](https://huggingface.co/datasets/rbler/MMSI-Video-Bench)
+[![Arxiv](https://img.shields.io/badge/arXiv-b31b1b?logo=arxiv&logoColor=white)](https://arxiv.org/abs/2512.10863)
+[![GitHub star chart](https://img.shields.io/github/stars/InternRobotics/MMSI-Video-Bench?style=square)](#)
+[![GitHub Issues](https://img.shields.io/github/issues/InternRobotics/MMSI-Video-Bench)](#)
+
+
 </div>
 
 
@@ -10,6 +52,7 @@
 
 ## 🔔 News
 
+🔥[2025-12]: Our MMSI-Video-Bench has been integrated into [VLMEvalKit](https://github.com/open-compass/VLMEvalKit).
 
 🔥[2025-12]: We released our paper, benchmark, and evaluation codes.
 
@@ -45,64 +88,96 @@ This includes understanding camera motion, instance motion, and interactive moti
     <img src="assets/benchmark_samples.png" alt="Dialogue_Teaser" width=100% >
 </div>
 
-## 🚀 Getting Started
+## 📊 Data Details
 
-### Installation
+All of our data is available on [Hugging Face](https://huggingface.co/datasets/rbler/MMSI-Video-Bench) and includes the following components:
 
-1. Clone Github repo.
+🎥 **Video Data** (`videos.zip`): Contains the video clip file (.mp4) corresponding to each sample. This file is generally not required for most models.
 
-2. Install requirements.
+🎥 **Frame Data** (`frames.zip`): Contains the frames (.jpg) extracted from each sample's video at the **base sampling rate**. This rate ensures no key information loss during sampling.  Each frame file is named using the format `{timestamp}_frame_{base_interval}_{image_id}` (e.g., 00:06.00_frame_1.50_4), where the timestamp, also shown on the **top-left corner** of the frame, indicates its **capture time in the original recording**.
 
-   ```shell
-   conda activate your_env_name
-   pip install -r requirements.txt
-   ```
+🖼️ **Reference Image Data** (`ref_images.zip`): Contains the auxiliary images referenced in the questions for each sample.
 
-   *Note:* If you want to evaluate open-source models, you need to set up their corresponding environments.
+📝 **Text Annotation** (`mmsivideo.json`)：This file contains the annotation information for MMSI-Video-Bench. All time references in the questions correspond to the capture time in the original recording and **align with** the timestamp flag on each frame. Key fields include:
 
-### Data Preparation
+```
+{
+  "ref_images": [Paths to auxiliary images referenced in the question,...],
+  "video_list": [
+    {
+      "path": Video clip file path,
+      "start": Timestamp (in seconds) of the first frame of the video clip in the original recording,
+      "end": Timestamp (in seconds) of the last frame of the video clip in the original recording,
+      "base_fps": Base sampling rate
+    },
+    ...
+  ],
+  "frames_list": [[Paths to frames sampled at the base sampling rate,...],...],
+  "system_prompt": "...",
+  "task_prompt": Task-specific prompt,
+  "user_prompt": Question text, with <video> as a placeholder for video and <image> for auxiliary images,
+  "format_prompt": Output format requirements,
+  "ground_truth": Correct answer
+}
+```
 
-  Download the MMSI-Video-Bench data from [Hugging Face](https://huggingface.co/datasets/rbler/MMSI-Video-Bench). The dataset includes:
 
-(1) Annotations: `mmsivideo.json`.
+Unless otherwise specified, the model input generally consists of:
+`system_prompt + task_prompt + user_prompt + format_prompt`.
 
-(2) Reference images for questions: `ref_images.zip`.
 
-(3) Video frames: `frames.zip`.
+## 🚀 Quick Start
 
-(Optional) Original video files: `videos.zip`.
+As outlined in our paper, we support two evaluation settings: **Sufficient-Coverage** ensures lossless sampling by preserving all essential information, while **Uniform‑50** uniformly samples 50 frames and cannot guarantee full information retention. Although most models—due to API constraints or GPU memory limits—only support the Uniform‑50 setting, we still strongly recommend evaluating under the **Sufficient‑Coverage** setting whenever possible.
 
-After downloading, unzip the files and organize them as follows:
+### Native Codebase Evaluation
 
-  ```
-  |-data/
-  |-- mmsivideo.json
-  |-- frames/
-  |-- ref_images/
-  |-- videos/
-  ```
-
-  For more detail about the json-format data, refer to [documention](https://huggingface.co/datasets/rbler/MMSI-Video-Bench).
-
-## 👓 Evaluation
-
-Please note that while **Sufficient Coverage** ensures that all video information is fully preserved, we **Recommend** using this setting for evaluation.
-Evaluation under the **Uniform** setting may lead to missing critical information. The Uniform-50 setting is only provided due to current input-length limitations in some models.
-
-1. Run infernece
-
-    For open-source models, change the openai `base_url` and `api_key` to your own in `utils/openai_api.py`. For proprietary models, modify the `load_model` function in `inference.py` to use the corresponding model path. Run the following command to perform inference for a specific model under a particular setting:
+1. Data Preparation: After downloading the data, unzip the files and organize the directory as follows:
+ 
+    ```
+    data/
+    ├── mmsivideo.json
+    ├── frames/
+    ├── ref_images/
+    ├── videos/
+    ```
+2. Install Required Packages. If you plan to evaluate open-source models, please set up their corresponding environments.
+    ```
+    pip install -r requirements.txt
+    ```
+3. Run Inference & Evaluation: For proprietary models: Update the `base_url` and `api_key` in `utils/openai_api.py` with your own credentials. For open-source models: Modify the `load_model` function in `inference.py` to point to the corresponding model path. Run the following commands to perform inference for a specific model under a given setting, and evaluate the results on a specific benchmark (Main, Robot Bench, Indoor Scene Perception Bench or Grounding Bench):
     ```python
-    python inference.py --model_name {model_name} --setting Uniform-50/Sufficient-Coverage
+    python inference.py --model_name {model_name} --setting Uniform-50/Sufficient-Coverage # inference
+    python evaluation.py --eval_dir {path/to/results} --bench main/robot_bench/ground_bench/indoor_perception_bench/easy2hard_bench # evaluation
     ```
 
-2. Run evaluation
-   
-   Run the following command to obtain scores for a specific benchmark. The default is the main benchmark.
+### VLMevalKit Evaluation
+Our MMSI-Video-Bench has been integrated into [VLMEvalKit](https://github.com/open-compass/VLMEvalKit). As VLMEvalKit currently does not support mixed video and image inputs, we have adapted a version that accepts only image inputs.
+Follow the [QuickStart](https://github.com/open-compass/VLMEvalKit/blob/main/docs/en/Quickstart.md) guide of VLMEvalKit and place the required data under the following structure:
 
-   ```python
-    python evaluation.py --eval_dir {path/to/results} --bench main/robot_bench/ground_bench/indoor_perception_bench/easy2hard_bench
-    ```
+  ```
+  LMUDATA/
+├── MMSIVideo_SC.tsv
+├── MMSIVideo_U50.tsv
+├── images/
+│   └── MMSIVideo/
+│       ├── frames/
+│       ├── ref_images/
+  ```
+
+When evaluating proprietary models, set `img_detail = low`; when evaluating QwenVL-series models, set `max_pixels = 360*420`. Run the evaluation with the following command:
+
+```python 
+python run.py --model Qwen2.5-VL-32B-Instruct --data MMSIVideo_SC/MMSIVideo_U50
+```
+
+*Note*: The results reported in our paper were generated through the Native Codebase Evaluation. While actual evaluation results may differ slightly from the paper, variations remain within an acceptable range. Potential contributing factors include:
+
+(1) Variations in option ordering, runtime environments, or random seeds, as well as differences in inference configurations between VLMEvalKit and the Native Codebase Evaluation, may lead to fluctuations of 1–2% in the overall score.
+
+(2) For certain models—such as the QwenVL series and the LLaVA-Video series—the input configuration in VLMEvalKit (image-only) differs from that in the Native Codebase (image + video), which may result in a variance of 2–3% in the overall score.
+
+(3) The overall scores of thinking models (e.g., GPT-4o, Gemini 3 Pro, Gemini 2.5 Flash) may also fluctuate within a range of 2–3% across runs.
 
 ## 🏆 Leaderboard
 

@@ -30,7 +30,6 @@ def parse_special_text(text):
     return result
 
 
-# internsr2
 class QwenVL2_5():
     def __init__(self,model_path):
         from transformers import AutoProcessor, Qwen2_5_VLForConditionalGeneration
@@ -116,7 +115,7 @@ class QwenVL2_5():
         )[0]   
         return response,content_list
 
-# Qwenvl
+
 class QwenVL3():
     def __init__(self,model_path,tmp_dir = './tmp'):
         from transformers import AutoProcessor, Qwen3VLForConditionalGeneration,Qwen3VLMoeForConditionalGeneration
