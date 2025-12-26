@@ -65,7 +65,7 @@ MMSI-Video-Bench is a fully human-annotated benchmark for evaluating video-based
 
 - **Diverse Video Sources.** MMSI-Video-Bench includes videos from 25 public datasets and 1 in-house collection, spanning tabletop recordings, indoor and multi-floor environments, outdoor scenes, sports, and movie footage.
 
-- **Comprehensive and Hostile Task Coverage.** The benchmark covers spatial layout reasoning, motion understanding, decision-making, and cross-video reasoning, providing a more holistic evaluation of video-based spatial intelligence.
+- **Comprehensive and Holistic Task Coverage.** The benchmark covers spatial layout reasoning, motion understanding, decision-making, and cross-video reasoning, providing a more holistic evaluation of video-based spatial intelligence.
 
 
 <div style="text-align: center;">
@@ -103,19 +103,19 @@ All of our data is available on [Hugging Face](https://huggingface.co/datasets/r
   "ref_images": [Paths to auxiliary images referenced in the question,...],
   "video_list": [
     {
-      "path": Video clip file path,
-      "start": Timestamp (in seconds) of the first frame of the video clip in the original recording,
-      "end": Timestamp (in seconds) of the last frame of the video clip in the original recording,
-      "base_fps": Base sampling rate
+      "path": Video clip file path.
+      "start": Timestamp (in seconds) of the first frame of the video clip in the original recording.
+      "end": Timestamp (in seconds) of the last frame of the video clip in the original recording.
+      "base_fps": Base sampling rate.
     },
     ...
   ],
-  "frames_list": [[Paths to frames sampled at the base sampling rate,...],...],
-  "system_prompt": "...",
-  "task_prompt": Task-specific prompt,
-  "user_prompt": Question text, with <video> as a placeholder for video and <image> for auxiliary images,
-  "format_prompt": Output format requirements,
-  "ground_truth": Correct answer
+  "frames_list": [[Paths to frames sampled at the base sampling rate,...],...]
+  "system_prompt": "...".
+  "task_prompt": Task-specific prompt.
+  "user_prompt": Question text, with <video> as a placeholder for video and <image> for auxiliary images.
+  "format_prompt": Output format requirements.
+  "ground_truth": Correct answer.
 }
 ```
 
