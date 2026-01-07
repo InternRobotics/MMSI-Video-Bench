@@ -50,6 +50,8 @@
 
 ## 🔔 News
 
+🔥[2026-1]: MMSI-Video-Bench is supported by [EASI](https://github.com/EvolvingLMMs-Lab/EASI?tab=readme-ov-file), a unified evaluation suite for spatial intelligence.
+
 🔥[2025-12]: Our MMSI-Video-Bench has been integrated into [VLMEvalKit](https://github.com/open-compass/VLMEvalKit).
 
 🔥[2025-12]: We released our paper, benchmark, and evaluation codes.
@@ -150,23 +152,18 @@ As outlined in our paper, we support two evaluation settings: **Sufficient-Cover
     ```
 
 ### VLMevalKit Evaluation
-Our MMSI-Video-Bench has been integrated into [VLMEvalKit](https://github.com/open-compass/VLMEvalKit). As VLMEvalKit currently does not support mixed video and image inputs, we have adapted a version that accepts only image inputs.
-Follow the [QuickStart](https://github.com/open-compass/VLMEvalKit/blob/main/docs/en/Quickstart.md) guide of VLMEvalKit and place the required data under the following structure:
+Our MMSI-Video-Bench has been integrated into [VLMEvalKit](https://github.com/open-compass/VLMEvalKit). Since VLMEvalKit currently does not support mixed video and image input, we have adapted a version that directly accepts video frames as input.
+Follow the [QuickStart](https://github.com/open-compass/VLMEvalKit/blob/main/docs/en/Quickstart.md) guide of VLMEvalKit for setup. You can find different configurations of MMSI-Video-Bench in `vlmeval/dataset/video_dataset_config.py` under the `mmsi_video_dataset` setting:
+- `MMSIVideoBench_50frame`: Corresponds to the Uniform-50 setting.
 
-  ```
-  LMUDATA/
-├── MMSIVideo_SC.tsv
-├── MMSIVideo_U50.tsv
-├── images/
-│   └── MMSIVideo/
-│       ├── frames/
-│       ├── ref_images/
-  ```
+- `MMSIVideoBench_300frame`: Corresponds to the Sufficient-Coverage setting.
 
-When evaluating proprietary models, set `img_detail = low`; when evaluating QwenVL-series models, set `max_pixels = 360*420`. Run the evaluation with the following command:
+When evaluating proprietary models, set `img_detail = low`; when evaluating QwenVL-series models, set `max_pixels = 360*420`. To run evaluation for a specific configuration, use the following command:
+
+
 
 ```python 
-python run.py --model Qwen2.5-VL-32B-Instruct --data MMSIVideo_SC/MMSIVideo_U50
+python run.py --model Qwen2.5-VL-32B-Instruct --data MMSIVideoBench_50frame
 ```
 
 *Note*: The results reported in our paper were generated through the Native Codebase Evaluation. While actual evaluation results may differ slightly from the paper, variations remain within an acceptable range. Potential contributing factors include:
